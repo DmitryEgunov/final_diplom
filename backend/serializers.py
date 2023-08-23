@@ -15,6 +15,7 @@ class ContactSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     contacts = ContactSerializer(read_only=True, many=True)
+    password = serializers.CharField(min_length=10, write_only=True)
 
     class Meta:
         model = User

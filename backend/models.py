@@ -9,7 +9,7 @@ class User(models.Model):
                             verbose_name='Имя', )
     email = models.EmailField(_('email address'),
                               unique=True)
-    password = models.CharField(max_length=100,
+    password = models.CharField(max_length=10,
                                 verbose_name='Пароль')
     company = models.CharField(max_length=100,
                                verbose_name='Компания')
