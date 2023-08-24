@@ -3,20 +3,16 @@ from django.contrib.auth.password_validation import validate_password
 
 from django.db.models import Q, Sum, F
 from django.db import IntegrityError
-
 import yaml
 from yaml import Loader
 from ujson import loads
 import requests
 from distutils.util import strtobool
-
 from django.http import JsonResponse
 from rest_framework.generics import ListAPIView
-
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-
 from .models import Shop, Category, ProductInfo, Product, Parameter, ProductParameter, Order, ConfirmEmailToken, \
     OrderItem, Contact
 from .serializers import UserSerializer, ProductInfoSerializer, ContactSerializer, OrderSerializer, CategorySerializer, \
@@ -286,6 +282,7 @@ class OrderView(APIView):
 
 
 class ContactView(APIView):
+
     def get(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             return JsonResponse({'Status': False, 'Error': 'Log in required'}, status=403)

@@ -1,3 +1,4 @@
+import django_rest_passwordreset
 from django.utils.translation import gettext_lazy as _
 
 from django.db import models
@@ -12,9 +13,12 @@ class User(models.Model):
     password = models.CharField(max_length=10,
                                 verbose_name='Пароль')
     company = models.CharField(max_length=100,
-                               verbose_name='Компания')
+                               verbose_name='Компания', blank=True)
     position = models.CharField(max_length=50,
-                                verbose_name='Должность')
+                                verbose_name='Должность', blank=True)
+
+    # class Meta:
+    #     app_label = django_rest_passwordreset
 
 
 class Shop(models.Model):
@@ -141,7 +145,7 @@ class Contact(models.Model):
 class ConfirmEmailToken(models.Model):
     class Meta:
         verbose_name = 'Токен подтверждения Email'
-        verbose_name_plural = 'ТОкены подтверждения Email'
+        verbose_name_plural = 'Токены подтверждения Email'
 
     @staticmethod
     def generate_key():

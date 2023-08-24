@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'hm3(!!*ug@(kkff9-3^cnm=&e)nzm+&tw*=dew4ub@32)mf2rn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django_rest_passwordreset',
+
     'rest_framework',
     'backend',
 ]
@@ -82,8 +85,27 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': '0000',
         'HOST': '127.0.0.1',
-        'PORT': '5433',
+        'PORT': '5431',
     }
+}
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'diplom_netology_eds'
+EMAIL_HOST_PASSWORD = 'sPxtSUpTp42&'
+DEFAULT_FROM_EMAIL = 'diplom_netology_eds'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
 }
 
 

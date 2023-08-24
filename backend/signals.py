@@ -1,3 +1,4 @@
+from django.dispatch import Signal
 import django.dispatch
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
@@ -5,8 +6,8 @@ from django_rest_passwordreset.signals import reset_password_token_created
 
 from .models import ConfirmEmailToken, User
 
-new_user_registered = django.dispatch.Signal(providing_args=['user_id'])
-new_order = django.dispatch.Signal(providing_args=['user_id'])
+new_user_registered = django.dispatch.Signal('user_id')
+new_order = django.dispatch.Signal('user_id')
 
 
 @django.dispatch.receiver(new_user_registered)
